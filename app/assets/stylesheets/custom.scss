@@ -1,0 +1,6 @@
+.translation {
+  font-style: italic;
+  &::before {
+    content: "- "
+  }
+}
