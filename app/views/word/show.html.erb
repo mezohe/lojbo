@@ -1,0 +1,14 @@
+<p>
+  <span><big><%= @word.name %></big></span>
+  <span><%= @word.jbo_type %></span>
+  <% @word.affixes.each do |affix| %>
+    <span>
+      <small>–</small><%= affix %><small>–</small>
+    </span>
+  <% end %>
+  <% @word.etymologies.each do |etymology| %>
+    <span><small><%= etymology.language %></small> <%= etymology.roman %></span>
+  <% end %>
+</p>
+<p><%= @word.definition %></p>
+<p><small><%= @word.note %></small></p>
