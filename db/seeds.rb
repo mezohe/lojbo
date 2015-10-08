@@ -1,5 +1,6 @@
 gismu = File.open("data/gismu.txt")
 cmavo = File.open("data/cmavo.txt")
+examples = Nokogiri::HTML(File.open("./data/la_bangu.html"))
 
 jbo = Language.create(iso_code: "jbo")
 zh = Language.create(iso_code: "zh")
@@ -70,3 +71,23 @@ create_etymology(es, 3, 3)
 create_etymology(en, 3, 3)
 create_etymology(hi, 3, 4)
 create_etymology(ru, 3, 4)
+
+pattern = /<b>([^<>]+)<\/b> — <i>([^<>]+)<\/i>/
+example_strings = examples.css("dd").map(&:to_s).select { |e| e.match(pattern) }
+examples_table = example_strings.map do |example|
+  groups = example.match(pattern)
+  jbo_exam = groups[1].gsub(/la (\w+)/, 'la .\1.')
+  en_exam = groups[2]
+  { jbo: jbo_exam, en: en_exam }
+end
+
+Word.all.each do |word|
+  name = word.name
+  has_word = examples_table.select { |e| e[:jbo].include?(name) }
+  desired_length = has_word.sort_by { |e| (e[:jbo].split.length - 8).abs }
+  example = desired_length.first
+  if example
+    word.examples.create(language: jbo, body: example[:jbo])
+    word.examples.create(language: en, body: example[:en])
+  end
+end
