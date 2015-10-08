@@ -77,6 +77,7 @@ example_strings = examples.css("dd").map(&:to_s).select { |e| e.match(pattern) }
 examples_table = example_strings.map do |example|
   groups = example.match(pattern)
   jbo_exam = groups[1].gsub(/(?<=\Ala |\Wla )\w+/, ".\\0.")
+  jbo_exam = jbo_exam.gsub(/(?<=\A|\s)([aeiou])/, ".\\1")
   en_exam = groups[2]
   { jbo: jbo_exam, en: en_exam }
 end
