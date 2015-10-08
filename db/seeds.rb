@@ -83,8 +83,9 @@ examples_table = example_strings.map do |example|
 end
 
 Word.all.each do |word|
-  name = word.name.gsub
-  has_word = examples_table.select { |e| e[:jbo].include?(name) }
+  name = word.name
+  pattern = /[\A\W]#{Regexp.escape name}[\z\W]/
+  has_word = examples_table.select { |e| e[:jbo].match(pattern) }
   desired_length = has_word.sort_by { |e| (e[:jbo].split.length - 8).abs }
   example = desired_length.first
   if example
