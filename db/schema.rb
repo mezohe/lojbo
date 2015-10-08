@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151004151318) do
+ActiveRecord::Schema.define(version: 20151008003033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,14 @@ ActiveRecord::Schema.define(version: 20151004151318) do
 
   add_index "etymologies", ["language_id"], name: "index_etymologies_on_language_id", using: :btree
   add_index "etymologies", ["word_id"], name: "index_etymologies_on_word_id", using: :btree
+
+  create_table "examples", force: :cascade do |t|
+    t.integer  "word_id"
+    t.integer  "language_id"
+    t.string   "body"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "jbo_classes", force: :cascade do |t|
     t.integer  "word_id"
