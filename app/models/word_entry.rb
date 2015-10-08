@@ -25,6 +25,7 @@ class WordEntry
   end
 
   def get_note(word, language)
-    word.notes.where(language: language).first.body
+    note = word.notes.where(language: language).first
+    note.body if !note.nil?
   end
 end
