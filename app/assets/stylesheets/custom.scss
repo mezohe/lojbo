@@ -15,9 +15,19 @@ big {
 
 small {
   font-size: 0.8em;
-  color: gray;
+  color: #666;
 }
 
 span {
   margin-right: 0.5em;
+}
+
+a {
+  color: #444;
+  &:hover {
+    color: #222;
+  }
+  &:visited, &:active {
+    color: inherit
+  }
 }
