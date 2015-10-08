@@ -11,7 +11,7 @@ ru = Language.create(iso_code: "ru")
 ar = Language.create(iso_code: "ar")
 
 gismu.drop(1).each do |line|
-  name = line[1..5].strip
+  name = line[1..5].strip.gsub(".", "")
   type = "gismu"
   affixes = line[6..18].split
   definition = line[62..158].strip
@@ -28,7 +28,7 @@ gismu.drop(1).each do |line|
 end
 
 cmavo.drop(1).each do |line|
-  name = line[0..10].strip
+  name = line[0..10].strip.gsub(".", "")
   type = "cmavo"
   jbo_class = line[11..19].strip
   last = line[62..-1]
@@ -83,7 +83,7 @@ examples_table = example_strings.map do |example|
 end
 
 Word.all.each do |word|
-  name = word.name
+  name = word.name.gsub
   has_word = examples_table.select { |e| e[:jbo].include?(name) }
   desired_length = has_word.sort_by { |e| (e[:jbo].split.length - 8).abs }
   example = desired_length.first
