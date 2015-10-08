@@ -17,7 +17,13 @@
   <p><%= @word.definition %></p>
   <p><small><%= @word.note %></small></p>
   <p>
-  <span><%= @word.example %></span>
-    <span><small class="translation"><%= @word.translation %></small></span>
+    <span><%= @word.example %></span>
+    <span>
+      <%=
+        if @word.translation
+          content_tag(:small, @word.translation, class: "translation")
+        end
+      %>
+    </span>
   </p>
 </div>

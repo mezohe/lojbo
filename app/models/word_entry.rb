@@ -10,14 +10,25 @@ class WordEntry
     @note = get_note(word, language)
     @affixes = word.affixes.map(&:name)
     @etymologies = etymology_entries(word.etymologies)
-    @example = word.examples.find_by(language: Language.find(1)).body
-    @translation = word.examples.find_by(language: language).body
+    @example = get_example(word)
+    @translation = get_example_translation(word, language)
   end
 
   def etymology_entries(etymologies)
     etymologies.map do |etymology|
       EtymologyEntry.new(etymology)
     end
+  end
+
+  def get_example(word)
+    jbo = Language.find(1)
+    example = word.examples.find_by(language: jbo)
+    example.body if example
+  end
+
+  def get_example_translation(word, language)
+    example = word.examples.find_by(language: language)
+    example.body if example
   end
 
   def get_definition(word, language)
