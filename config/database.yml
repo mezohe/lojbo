@@ -21,6 +21,10 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
 
+  host: localhost
+  username: ENV["LOJBO_DATABASE_USER"]
+  password: ENV["LOJBO_DATABASE_PASSWORD"]
+
 development:
   <<: *default
   database: lojbo_development
