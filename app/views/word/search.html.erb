@@ -1,0 +1,11 @@
+<div class="col-xs-12">
+  <% unless @words.empty? %>
+    <% @words.each do |word| %>
+      <%= render partial: "word", locals: { word: word } %>
+    <% end %>
+  <% else %>
+    <h4>u'u na jalge
+      <small class="translation">Sorry, no results.</small>
+    </h4>
+  <% end %>
+</div>

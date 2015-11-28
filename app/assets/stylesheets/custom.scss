@@ -1,5 +1,6 @@
 body {
   font-size: 1.5em;
+  margin-bottom: 4em;
 }
 
 .translation {
@@ -30,4 +31,12 @@ a {
   &:visited, &:active {
     color: inherit
   }
+}
+
+.word {
+  margin-top: 2em;
+}
+
+.big {
+  font-size: 150%;
 }

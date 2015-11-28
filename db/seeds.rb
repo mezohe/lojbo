@@ -93,3 +93,19 @@ Word.all.each do |word|
     word.examples.create(language: en, body: example[:en])
   end
 end
+
+@synonyms = Hash.new
+@synonyms[en] = JSON.parse(File.open("data/synonyms_en.json").read)
+
+@synonyms.map do |language, list|
+  list.each do |word_name, synonym_list|
+    synonym_list.each do |synonym|
+      begin
+        Word.find_by(name: word_name).synonyms.create(language: language,
+                                                      body: synonym)
+      rescue
+        puts word_name
+      end
+    end
+  end
+end

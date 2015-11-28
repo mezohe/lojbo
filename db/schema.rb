@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151008003033) do
+ActiveRecord::Schema.define(version: 20151127142109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,17 @@ ActiveRecord::Schema.define(version: 20151008003033) do
   add_index "notes", ["language_id"], name: "index_notes_on_language_id", using: :btree
   add_index "notes", ["word_id"], name: "index_notes_on_word_id", using: :btree
 
+  create_table "synonyms", force: :cascade do |t|
+    t.integer  "word_id"
+    t.integer  "language_id"
+    t.string   "body"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "synonyms", ["language_id"], name: "index_synonyms_on_language_id", using: :btree
+  add_index "synonyms", ["word_id"], name: "index_synonyms_on_word_id", using: :btree
+
   create_table "words", force: :cascade do |t|
     t.string   "name"
     t.string   "jbo_type"
@@ -92,4 +103,6 @@ ActiveRecord::Schema.define(version: 20151008003033) do
   add_foreign_key "jbo_classes", "words"
   add_foreign_key "notes", "languages"
   add_foreign_key "notes", "words"
+  add_foreign_key "synonyms", "languages"
+  add_foreign_key "synonyms", "words"
 end
