@@ -9,6 +9,8 @@ require 'capistrano/bundler'
 require 'capistrano/rbenv'
 require 'capistrano/puma'
 
+set :rbenv_ruby, '2.2.3p173'
+
 # Include tasks from other gems included in your Gemfile
 #
 # For documentation on these, see for example:

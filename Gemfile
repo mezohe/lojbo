@@ -22,8 +22,8 @@ group :development do
 
   gem 'spring'
 
-  gem 'capistrano',         require: false
-  gem 'capistrano-rbenv',   require: false
+  gem 'capistrano'
+  gem 'capistrano-rbenv'
   gem 'capistrano-rails',   require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano3-puma',   require: false

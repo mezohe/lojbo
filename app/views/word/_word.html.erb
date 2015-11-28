@@ -1,0 +1,31 @@
+<div class="word">
+  <p>
+    <span><big><%= link_to word.name, word_path(word.name) %></big></span>
+    <span><%= word.jbo_type %></span>
+    <% word.affixes.each do |affix| %>
+      <span>
+        <small>–</small><%= affix %><small>–</small>
+      </span>
+    <% end %>
+    <% word.etymologies.each do |etymology| %>
+      <span>
+        <small><%= etymology.language %></small>
+        <%= link_to etymology.roman, etymology.wiktionary_link %>
+      </span>
+    <% end %>
+  </p>
+  <p><%= word.definition %></p>
+  <p><small><%= word.note %></small></p>
+  <p>
+    <% if word.example %>
+      <span><%= content_tag :span, word.example %></span>
+      <span>
+        <%=
+          if word.translation
+            content_tag(:small, word.translation, class: "translation")
+          end
+        %>
+      </span>
+    <% end %>
+  </p>
+</div>

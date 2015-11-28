@@ -1,4 +1,4 @@
-server ENV["SERVER_IP"], port: ENV["SERVER_PORT"], roles: [:web, :app, :db], primary: true
+server "159.203.143.204", port: 80, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:russelleh/lojbo.git'
 set :application,     'lojbo'
