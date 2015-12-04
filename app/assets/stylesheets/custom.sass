@@ -1,4 +1,5 @@
 $red: #d35f5f
+$blue: #5f8dd3
 
 *
   line-height: 1.5em
@@ -18,20 +19,22 @@ big
 small
   font-size: 0.8em
   color: #666
+  em
+    font-style: normal
 
 span
   margin-right: 0.5em
 
 a
-  color: #444
+  color: #888
   &:hover
     color: #222
   &:visited, &:active
-    color: inherit
+    color: #666
 
 b
-  color: $red
   font-size: inherit
+  color: $red
 
 h1
   font-size: 3em
@@ -48,9 +51,7 @@ q
   display: block
   padding: 1em
   text-align: justify
-
-big, h2, .example
-  font-size: 1.5em
+  font-size: inherit
 
 .word
   margin-top: 2em
@@ -74,9 +75,17 @@ big, h2, .example
   text-align: center
   padding-bottom: 0.25em
   margin-right: 0
+  font-size: 2em
 
 .word
   &, & *
     padding: 0
   big a
     font-size: 1.0em
+
+.red
+  b
+    color: $red
+.blue
+  b
+    color: $blue
