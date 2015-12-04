@@ -1,0 +1,82 @@
+$red: #d35f5f
+
+*
+  line-height: 1.5em
+  font-size: 20px
+  border-radius: 0.25em
+
+body
+  margin-bottom: 4em
+
+.container
+  margin: 0 auto
+  padding: 2em
+
+big
+  font-size: 1.5em
+
+small
+  font-size: 0.8em
+  color: #666
+
+span
+  margin-right: 0.5em
+
+a
+  color: #444
+  &:hover
+    color: #222
+  &:visited, &:active
+    color: inherit
+
+b
+  color: $red
+  font-size: inherit
+
+h1
+  font-size: 3em
+  text-align: center
+
+h2
+  font-weight: 400
+  b
+    font-weight: 500
+
+q
+  color: white
+  background: $red
+  display: block
+  padding: 1em
+  text-align: justify
+
+big, h2, .example
+  font-size: 1.5em
+
+.word
+  margin-top: 2em
+
+.translation
+  font-style: italic
+  display: block
+  &::before
+    content: none
+
+.examples
+  display: block
+  text-align: center
+  padding: 1em
+  p
+    display: inline-block
+    padding: 1em
+
+.example
+  display: block
+  text-align: center
+  padding-bottom: 0.25em
+  margin-right: 0
+
+.word
+  &, & *
+    padding: 0
+  big a
+    font-size: 1.0em
