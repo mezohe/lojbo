@@ -8,7 +8,6 @@ es = Language.create(iso_code: "es")
 en = Language.create(iso_code: "en")
 hi = Language.create(iso_code: "hi")
 ru = Language.create(iso_code: "ru")
-ar = Language.create(iso_code: "ar")
 
 gismu.drop(1).each do |line|
   name = line[1..5].strip.gsub(".", "")
@@ -19,7 +18,7 @@ gismu.drop(1).each do |line|
   word = Word.create(
     name: name,
     jbo_type: type,
-    affixes: affixes.map{ |affix_name| Affix.new(name: affix_name) },
+    affixes: affixes.map { |affix_name| Affix.new(name: affix_name) },
     definitions: [Definition.new(language: en, body: definition)],
   )
   if note
@@ -33,7 +32,6 @@ cmavo.drop(1).each do |line|
   jbo_class = line[11..19].strip
   last = line[62..-1]
   note = last.slice!(/\w+ modal, \w+ place/)
-  see_also = last.slice!(/\(cf\. .*\)/)
   definition = last.strip
   word = Word.create(
     name: name,
@@ -61,7 +59,9 @@ def create_etymology(lang, ety_part, roman_part)
       word = line[0]
       script = line[ety_part]
       roman = line[roman_part]
-      Word.find_by(name: word).etymologies.create(language: lang, etymology: script, roman: roman)
+      Word.find_by(name: word).etymologies.create(language: lang,
+                                                  etymology: script,
+                                                  roman: roman)
     end
   end
 end
